@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MIN-AH LOG",
+  "name": "MIN-AH LOG Portfolio",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "민아로그 아이콘.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },

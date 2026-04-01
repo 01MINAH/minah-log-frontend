@@ -49,6 +49,235 @@ body {
   margin-top: 2rem;
 }
 
+/* Horizontal Scroll Carousel */
+.carousel-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem 0 2rem 0;
+  margin-top: 2rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+.carousel-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.card-news {
+  flex: 0 0 280px; /* Fixed width for card news */
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-news:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-news-image {
+  width: 100%;
+  height: 160px;
+  background-color: var(--secondary-color);
+  object-fit: cover;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-news-content {
+  padding: 1.25rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-news-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.card-news-description {
+  font-size: 0.9rem;
+  color: var(--nav-link);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.card-news-link {
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  text-align: right;
+}
+
+.interview-text {
+  font-family: 'GyeonggiTitle', sans-serif;
+  font-size: 1.25rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Featured Projects Section */
+.featured-projects-section {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.section-title {
+  font-family: 'GyeonggiTitle', sans-serif;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.project-icon-link {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.project-icon-link:hover {
+  transform: scale(1.05);
+}
+
+.project-icon {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-color);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.project-info {
+  flex-grow: 1;
+}
+
+.project-info h3 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem 0;
+  color: var(--text-color);
+}
+
+.project-description {
+  color: var(--nav-link);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--nav-link);
+}
+
+.project-meta-item {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.meta-label {
+  font-weight: bold;
+  color: var(--primary-color);
+  min-width: 80px;
+}
+
+.project-links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.project-link-item {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.view-more-container {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.btn-view-more {
+  padding: 0.8rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: 2px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-view-more:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .project-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .project-icon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .project-meta-item {
+    justify-content: center;
+  }
+
+  .project-links {
+    justify-content: center;
+  }
+}
+
 .card {
   background-color: var(--card-bg);
   border-radius: 12px;

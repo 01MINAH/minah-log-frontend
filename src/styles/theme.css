@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
 :root {
   --bg-color: #f0f8ff; 
   --text-color: #1a202c;
@@ -26,19 +28,13 @@
   --border-color: #4a5568;
 }
 
-@font-face {
-  font-family: 'GyeonggiTitle';
-  src: url('../assets/fonts/경기천년제목V_Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-}
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: all 0.3s ease;
   margin: 0;
-  font-family: 'Pretendard', -apple-system, sans-serif;
+  font-family: 'Jua', sans-serif;
 }
 
 /* Card Grid System */
@@ -134,7 +130,7 @@ body {
 }
 
 .interview-text {
-  font-family: 'GyeonggiTitle', sans-serif;
+  font-family: 'Jua', sans-serif;
   font-size: 1.25rem;
   margin-top: 3rem;
   margin-bottom: 1.5rem;
@@ -150,7 +146,7 @@ body {
 }
 
 .section-title {
-  font-family: 'GyeonggiTitle', sans-serif;
+  font-family: 'Jua', sans-serif;
   font-size: 2rem;
   color: var(--primary-color);
   margin-bottom: 2rem;
@@ -179,12 +175,12 @@ body {
 }
 
 .project-icon {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
   object-fit: cover;
-  border: 4px solid var(--primary-color);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .project-info {
@@ -339,7 +335,7 @@ main {
 }
 
 .content-wrapper {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
   width: 100%;
@@ -368,7 +364,7 @@ main {
 }
 
 .about-content {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 3rem 2rem;
 }
@@ -432,14 +428,21 @@ header {
   backdrop-filter: blur(8px);
   padding: 1rem 2rem;
   display: flex;
-  align-items: center; /* Changed from space-between to align-items center */
+  align-items: center;
+  justify-content: space-between;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 nav {
-  margin-left: auto; /* Push nav to the right */
-  margin-right: 1.5rem; /* Space between nav and theme toggle */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: 0;
 }
 
 nav ul {
@@ -451,7 +454,7 @@ nav ul {
 }
 
 nav a {
-  font-family: 'GyeonggiTitle', sans-serif; /* Apply custom font */
+  font-family: 'Jua', sans-serif; /* Apply custom font */
   color: var(--nav-link);
   font-weight: 500;
   transition: color 0.2s;
@@ -474,9 +477,13 @@ footer {
   align-items: center;
   gap: 0.5rem;
   font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary-color);
-  font-family: 'GyeonggiTitle', sans-serif; /* Apply custom font */
+  font-weight: normal;
+  color: white !important;
+  background-color: var(--primary-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-family: 'Jua', sans-serif;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .theme-toggle {
@@ -487,6 +494,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
 }
 
 .btn-primary {
@@ -522,7 +530,7 @@ footer {
 }
 
 .detail-title {
-  font-family: 'GyeonggiTitle', sans-serif;
+  font-family: 'Jua', sans-serif;
   font-size: 2.5rem;
   color: var(--primary-color);
   margin-bottom: 1rem;
@@ -549,7 +557,7 @@ footer {
 }
 
 .detail-section h2 {
-  font-family: 'GyeonggiTitle', sans-serif;
+  font-family: 'Jua', sans-serif;
   font-size: 1.8rem;
   color: var(--text-color);
   margin-bottom: 1.5rem;
@@ -647,7 +655,7 @@ footer {
 }
 
 .sticky-toc h3 {
-  font-family: 'GyeonggiTitle', sans-serif;
+  font-family: 'Jua', sans-serif;
   color: var(--primary-color);
   margin-top: 0;
   margin-bottom: 1.5rem;
@@ -692,4 +700,109 @@ footer {
     position: static;
     margin-bottom: 2rem;
   }
+}
+
+/* ==========================================================================
+   Projects Card Grid Layout
+   ========================================================================== */
+.projects-section {
+  padding: 2rem 0;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #eaeaea);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-color, #333333);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.project-card-image-wrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-card-image {
+  transform: scale(1.05);
+}
+
+.project-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-card-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color, #333);
+}
+
+.project-card-period {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0 0 1rem 0;
+}
+
+.project-card-description {
+  font-size: 1rem;
+  color: var(--text-color, #555);
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.project-card-tag {
+  background-color: var(--background-color, #f0f0f0);
+  color: var(--primary-color, #333);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+.project-card-tag-more {
+  background-color: #e0e0e0;
 }

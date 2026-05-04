@@ -1,0 +1,47 @@
+[page] 👋🏻 안녕하세요, SW 개발자 임민아입니다.
+[page] MINAH’s LIST
+[sub_header] ‘개인’의 성장은 ‘기업’의 성장이고, 기업의 성장은 ‘나라’의 성장이라고 생각합니다.
+팀 프로젝트 활동을 하면서 누군가와 지식을 공유하고 회고할 때, 성장한 ‘나’를 발견하며 성취감을 느꼈습니다.
+그래서 사람들의 일상과 직접 연결되는 서비스를 안정적으로 뒷받침할 수 있는 백엔드 개발에 관심이 있습니다.
+[text] SW 시스템이야말로 사용자 경험의 기반이자 기업 비즈니스의 중심이라고 생각하며, 기술로 성장과 변화를 만들고 싶습니다.
+[sub_sub_header] 🖥️ 사용 기술 
+[sub_sub_header] 👩🏻‍💻 내가 기여한 부분
+[bulleted_list] ERD 다이러그램 제작. 기여도 85+%
+[image] 보정(민아).jpg
+[text] 📧  lminah620@gmail.com 
+[text] 📞  010-7671-7831
+[text] 🚀  Github
+[text] 📘  Velog
+[text] 📙  tistory
+[text] 🏫  소프트웨어학과 (졸업)
+[header] 배움을 나누며 함께 성장하는 것을 추구합니다. ✈️
+성장을 위해 꾸준히 알고리즘 공부를 하고 있습니다.
+[text] SW 개발자로서 ERD 다이어그램을 직접 설계하며 데이터베이스 구조에 대한 이해도를 높였고, 쿼리 실행 계획 분석을 통해 발생하던 풀스캔 문제를 해결하여 서버 응답 속도를 약 30.34% 단축시켰습니다.
+[text] Spring Boot 기반 프로젝트에서는 REST API를 설계하며 중복 코드를 제거해 유지보수성을 향상시켰고, 발생하던 N+1 문제는 DTO를 활용한 데이터 선 로딩 방식으로 개선하여, 기존 2N+1 쿼리 구조를 1회 쿼리로 최적화하는 성능 개선을 이루었습니다.
+[image] image.png
+[header] 프로젝트
+[image] image.png
+[sub_header] 대기만성
+[text] [소프트웨어학과 경진대회] 에서 진행한 ‘자격증을 준비중인 학습자들을 위한 효율적인 학습 사이트’ 입니다.
+[text] 각 자격증에 알맞는 기출문제들, 강좌들을 모아두었고, 학습자를 위한 문제 추천 서비스도 제공합니다.
+[text] 2022. 06 ~ 2022. 12
+[sub_sub_header] 👩🏻‍💻 내가 기여한 부분
+[bulleted_list] OCR
+[bulleted_list] Crawling
+[bulleted_list] MySQL DB 관리
+[bulleted_list] 협업
+[bulleted_list] 10,000건 이상 데이터 수집
+[bulleted_list] DB 환경 구축 - 도메인 별 테이블 분리
+[text] Back-End / Front-End
+[text] 협업 도구
+[image] 스크린샷 2025-05-21 133440.png
+[sub_header] PopFlix
+[text] [LG유플러스] 유레카 SW 교육과정에서 진행하는 경진대회 ‘융합’프로젝트 입니다. 
+영화 리뷰 서비스를 제공합니다.
+[text] Github →ㅤㅤ프로젝트 회고록→
+[text] 2024. 11 ~ 2024. 12
+[text] Frontend 4명, Backend 3명
+[image] popflix메인화면3.png
+[image] KakaoTalk_20250520_145058458.png
+[page] 융합 프로젝트 - 11/12 ~ 12/20
+[image] image.png

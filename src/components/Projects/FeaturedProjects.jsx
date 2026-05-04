@@ -14,7 +14,7 @@ const FeaturedProjects = () => {
       <div className="project-list">
         {featuredProjects.map((project) => (
           <div key={project.id} className="project-item">
-            <Link to={`/projects`} className="project-icon-link">
+            <Link to={`/projects/${project.id}`} className="project-icon-link">
               <img 
                 src={project.image} 
                 alt={project.title} 
@@ -26,7 +26,7 @@ const FeaturedProjects = () => {
             </Link>
             
             <div className="project-info">
-              <h3>{project.title}</h3>
+              <h3><Link to={`/projects/${project.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{project.title}</Link></h3>
               <p className="project-description">{project.description}</p>
               
               <div className="project-meta">

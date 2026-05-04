@@ -56,11 +56,6 @@ const ProjectDetail = () => {
               <p><strong>인원:</strong> {project.members}</p>
             </section>
 
-            <section id="description" className="detail-section">
-              <h2>프로젝트 설명</h2>
-              <p>{project.detailedDescription}</p>
-            </section>
-
             <section id="period" className="detail-section">
               <h2>작업 기간</h2>
               <p>{project.period}</p>
@@ -68,7 +63,7 @@ const ProjectDetail = () => {
 
             <section id="contribution" className="detail-section">
               <h2>내가 기여한 부분</h2>
-              <p>{project.contribution}</p>
+              <p style={{ whiteSpace: 'pre-wrap' }}>{project.contribution}</p>
             </section>
 
             <section id="techstack" className="detail-section">
@@ -109,7 +104,6 @@ const ProjectDetail = () => {
             <h3>목차</h3>
             <ul className="toc-list">
               <li><a href="#team" onClick={(e) => scrollToSection(e, 'team')}>팀 명 / 구성원</a></li>
-              <li><a href="#description" onClick={(e) => scrollToSection(e, 'description')}>프로젝트 설명</a></li>
               <li><a href="#period" onClick={(e) => scrollToSection(e, 'period')}>작업 기간</a></li>
               <li><a href="#contribution" onClick={(e) => scrollToSection(e, 'contribution')}>내가 기여한 부분</a></li>
               <li><a href="#techstack" onClick={(e) => scrollToSection(e, 'techstack')}>사용 기술</a></li>

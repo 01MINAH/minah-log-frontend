@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import { projectsData } from '../config/projectsData';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const project = projectsData.find(p => p.id === parseInt(id));
 
-  // 스크롤 맨 위로 이동
+  // Scroll to top on load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
@@ -19,7 +20,7 @@ const ProjectDetail = () => {
     e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerOffset = 80; // 고정 헤더 높이 여백
+      const headerOffset = 90; // sticky header height offset
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -31,12 +32,29 @@ const ProjectDetail = () => {
   };
 
   return (
-    <div className="content-wrapper project-detail-page">
-      <div className="project-detail-layout">
+    <div className="content-wrapper wide project-detail-page">
+      {/* Top Header Row with Back and Resource Links */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <Link to="/projects" className="btn-secondary" style={{ display: 'inline-flex', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
+          ← 프로젝트 목록으로
+        </Link>
         
-        {/* 본문 (좌측) */}
+        <div style={{ display: 'flex', gap: '0.75rem' }}>
+          <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'inline-flex', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
+            GitHub 소스코드
+          </a>
+          {project.retrospective && (
+            <a href={project.retrospective} target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ display: 'inline-flex', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
+              프로젝트 회고록
+            </a>
+          )}
+        </div>
+      </div>
+
+      <div className="project-detail-layout">
+        {/* Main Content Area (Left) */}
         <div className="project-detail-content">
-          <div className="detail-header">
+          <div className="detail-header" style={{ textAlign: 'left', marginBottom: '2rem' }}>
             <h1 className="detail-title">{project.title}</h1>
             <p className="detail-subtitle">{project.description}</p>
             <img 
@@ -49,69 +67,44 @@ const ProjectDetail = () => {
             />
           </div>
 
-          <div className="detail-sections">
-            <section id="team" className="detail-section">
-              <h2>팀 명 / 구성원</h2>
-              <p><strong>팀명:</strong> {project.teamName}</p>
-              <p><strong>인원:</strong> {project.members}</p>
-            </section>
+          {/* Quick Stats Meta Box */}
+          <div className="detail-meta-box">
+            <div className="detail-meta-item">
+              <span className="detail-meta-label">팀명</span>
+              <span>{project.teamName}</span>
+            </div>
+            <div className="detail-meta-item">
+              <span className="detail-meta-label">구성원</span>
+              <span>{project.members}</span>
+            </div>
+            <div className="detail-meta-item">
+              <span className="detail-meta-label">작업 기간</span>
+              <span>{project.period}</span>
+            </div>
+            <div className="detail-meta-item">
+              <span className="detail-meta-label">기술 스택</span>
+              <span>{project.techStack?.join(', ')}</span>
+            </div>
+          </div>
 
-            <section id="period" className="detail-section">
-              <h2>작업 기간</h2>
-              <p>{project.period}</p>
-            </section>
-
-            <section id="contribution" className="detail-section">
-              <h2>내가 기여한 부분</h2>
-              <p style={{ whiteSpace: 'pre-wrap' }}>{project.contribution}</p>
-            </section>
-
-            <section id="techstack" className="detail-section">
-              <h2>사용 기술</h2>
-              <ul className="tech-stack-list">
-                {project.techStack?.map((tech, idx) => (
-                  <li key={idx} className="tech-tag">{tech}</li>
-                ))}
-              </ul>
-            </section>
-
-            <section id="troubleshooting" className="detail-section">
-              <h2>트러블슈팅</h2>
-              <div className="troubleshooting-list">
-                {project.troubleshooting?.map((ts, idx) => (
-                  <div key={idx} className="troubleshooting-item">
-                    <h3 className="ts-issue">문제: {ts.issue}</h3>
-                    <p className="ts-solution">해결: {ts.solution}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <section className="detail-section links-section">
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                GitHub 보러가기
-              </a>
-              <a href={project.retrospective} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                회고록 읽기
-              </a>
-            </section>
+          {/* Markdown Content */}
+          <div className="project-body-content">
+            <MarkdownRenderer markdownPath={project.markdownPath} />
           </div>
         </div>
 
-        {/* 목차 / 사이드바 (우측) */}
+        {/* Sidebar Table of Contents (Right) */}
         <aside className="project-detail-sidebar">
           <div className="sticky-toc">
             <h3>목차</h3>
             <ul className="toc-list">
-              <li><a href="#team" onClick={(e) => scrollToSection(e, 'team')}>팀 명 / 구성원</a></li>
-              <li><a href="#period" onClick={(e) => scrollToSection(e, 'period')}>작업 기간</a></li>
-              <li><a href="#contribution" onClick={(e) => scrollToSection(e, 'contribution')}>내가 기여한 부분</a></li>
-              <li><a href="#techstack" onClick={(e) => scrollToSection(e, 'techstack')}>사용 기술</a></li>
-              <li><a href="#troubleshooting" onClick={(e) => scrollToSection(e, 'troubleshooting')}>트러블슈팅</a></li>
+              <li><a href="#프로젝트-소개" onClick={(e) => scrollToSection(e, '프로젝트-소개')}>프로젝트 소개</a></li>
+              <li><a href="#사용-기술" onClick={(e) => scrollToSection(e, '사용-기술')}>사용 기술</a></li>
+              <li><a href="#내가-기여한-부분" onClick={(e) => scrollToSection(e, '내가-기여한-부분')}>내가 기여한 부분</a></li>
+              <li><a href="#트러블슈팅-및-극복-과정" onClick={(e) => scrollToSection(e, '트러블슈팅-및-극복-과정')}>트러블슈팅</a></li>
             </ul>
           </div>
         </aside>
-
       </div>
     </div>
   );

@@ -4,9 +4,11 @@ import { projectsData } from '../config/projectsData';
 
 const Projects = () => {
   return (
-    <div className="content-wrapper project-page-container">
+    <div className="content-wrapper wide projects-page-container">
       <section className="projects-section">
         <h1 className="page-title">Projects</h1>
+        <p className="page-subtitle">지금까지 주도적으로 설계하고 개발에 참여한 대표 프로젝트입니다.</p>
+        
         <div className="projects-grid">
           {projectsData.map(project => (
             <Link to={`/projects/${project.id}`} key={project.id} className="project-card">

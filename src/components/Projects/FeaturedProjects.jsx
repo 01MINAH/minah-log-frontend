@@ -1,68 +1,57 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { projectsData } from '../../config/projectsData';
+import CarouselSlider from '../CarouselSlider';
 
 const FeaturedProjects = () => {
-  const navigate = useNavigate();
-  const featuredProjects = projectsData.slice(0, 3); // 상위 3개 프로젝트
-  const hasMore = projectsData.length > 3;
+  const renderProjectCard = (project) => (
+    <Link 
+      to={`/projects/${project.id}`} 
+      className="project-card" 
+      style={{ width: '100%', height: '100%', textDecoration: 'none' }}
+    >
+      <div className="project-card-image-wrapper" style={{ height: '180px' }}>
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          className="project-card-image"
+          onError={(e) => {
+            e.target.src = 'https://via.placeholder.com/400x300?text=Project+Cover';
+          }}
+        />
+      </div>
+      <div className="project-card-content" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+        <h3 className="project-card-title" style={{ fontSize: '1.15rem', marginBottom: '0.5rem', fontWeight: '700' }}>
+          {project.title}
+        </h3>
+        <p className="project-card-description" style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: '1.5', marginBottom: '1.25rem', flexGrow: 1 }}>
+          {project.description}
+        </p>
+        <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8rem', color: 'var(--text-muted)', borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem' }}>
+          <span>{project.period.split(' ')[0]}</span>
+          {project.techStack && project.techStack.length > 0 && (
+            <span className="tag" style={{ padding: '0.15rem 0.5rem', fontSize: '0.75rem' }}>
+              {project.techStack[0]}
+            </span>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
 
   return (
-    <section className="featured-projects-section">
-      <h2 className="section-title">Featured Projects</h2>
+    <section className="featured-projects-section" style={{ borderTop: '1px solid var(--border-color)', paddingTop: '3rem', marginTop: '3rem' }}>
+      <h2 className="section-title" style={{ fontSize: '1.8rem', fontWeight: '800', textAlign: 'center', marginBottom: '2rem' }}>
+        프로젝트
+      </h2>
       
-      <div className="project-list">
-        {featuredProjects.map((project) => (
-          <div key={project.id} className="project-item">
-            <Link to={`/projects/${project.id}`} className="project-icon-link">
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="project-icon"
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/180?text=Project'; // 이미지 없을 때 대체
-                }}
-              />
-            </Link>
-            
-            <div className="project-info">
-              <h3><Link to={`/projects/${project.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{project.title}</Link></h3>
-              <p className="project-description">{project.description}</p>
-              
-              <div className="project-meta">
-                <div className="project-meta-item">
-                  <span className="meta-label">작업 기간</span>
-                  <span>{project.period}</span>
-                </div>
-                <div className="project-meta-item">
-                  <span className="meta-label">인원 수</span>
-                  <span>{project.members}</span>
-                </div>
-              </div>
-
-              <div className="project-links">
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link-item">
-                  GitHub 바로가기
-                </a>
-                <a href={project.retrospective} target="_blank" rel="noopener noreferrer" className="project-link-item">
-                  프로젝트 회고록
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
+      <CarouselSlider items={projectsData} renderItem={renderProjectCard} />
+      
+      <div className="view-more-container" style={{ marginTop: '2rem', textAlign: 'center' }}>
+        <Link to="/projects" className="btn-secondary" style={{ display: 'inline-flex' }}>
+          프로젝트 전체보기
+        </Link>
       </div>
-
-      {hasMore && (
-        <div className="view-more-container">
-          <button 
-            className="btn-view-more" 
-            onClick={() => navigate('/projects')}
-          >
-            더보기
-          </button>
-        </div>
-      )}
     </section>
   );
 };

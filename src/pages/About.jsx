@@ -1,5 +1,60 @@
 import React from 'react';
-import { Mail, Phone, BookOpen, Rss, Award } from 'lucide-react';
+import { Mail, Phone, BookOpen, Rss, Award, Database, Layers, Cpu, Globe } from 'lucide-react';
+
+const skillCategories = [
+  {
+    title: 'Backend Engineering',
+    skills: ['Spring Boot', 'Java', 'Python', 'Django', 'Node.js', 'Express', 'RESTful API']
+  },
+  {
+    title: 'Frontend Development',
+    skills: ['React', 'JavaScript (ES6+)', 'CSS3 / CSS Variables', 'HTML5', 'jQuery', 'Vanilla JS']
+  },
+  {
+    title: 'Database & DevOps',
+    skills: ['MySQL', 'ERD Design', 'Query Tuning', 'AWS EC2 / RDS', 'Docker', 'GitHub Actions', 'Git / GitHub']
+  },
+  {
+    title: 'Data & Utilities',
+    skills: ['Tesseract OCR', 'BeautifulSoup (Web Crawling)', 'Notion API', 'Figma']
+  }
+];
+
+const skillIcons = {
+  // Backend Engineering
+  "Spring Boot": <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="Spring Boot" className="w-6 h-6" />,
+  "Java": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" className="w-6 h-6" />,
+  "Python": <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python" className="w-6 h-6" />,
+  "Django": <img src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-icon.svg" alt="Django" className="w-6 h-6" />,
+  "Node.js": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-6 h-6" />,
+  "Express": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="Express" className="w-6 h-6" style={{ filter: 'var(--logo-filter)' }} />,
+  "RESTful API": <Layers size={18} style={{ color: 'var(--primary-color)' }} />,
+
+  // Frontend Development
+  "React": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" className="w-6 h-6" />,
+  "JavaScript (ES6+)": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" className="w-6 h-6" />,
+  "CSS3 / CSS Variables": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="CSS3" className="w-6 h-6" />,
+  "HTML5": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="HTML5" className="w-6 h-6" />,
+  "jQuery": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jquery/jquery-original.svg" alt="jQuery" className="w-6 h-6" />,
+  "Vanilla JS": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="Vanilla JS" className="w-6 h-6" />,
+
+  // Database & DevOps
+  "MySQL": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" className="w-6 h-6" />,
+  "ERD Design": <Database size={18} style={{ color: 'var(--primary-color)' }} />,
+  "Query Tuning": <Database size={18} style={{ color: 'var(--primary-color)' }} />,
+  "AWS EC2 / RDS": <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS" className="w-6 h-6" />,
+  "Docker": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" className="w-6 h-6" />,
+  "GitHub Actions": <img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" alt="GitHub Actions" className="w-6 h-6" style={{ filter: 'var(--logo-filter)' }} />,
+  "Git / GitHub": <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" className="w-6 h-6" />,
+  "Git/GitHub": <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" className="w-6 h-6" />,
+  "VS Code": <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VS Code" className="w-6 h-6" />,
+
+  // Data & Utilities
+  "Tesseract OCR": <Cpu size={18} style={{ color: 'var(--primary-color)' }} />,
+  "BeautifulSoup (Web Crawling)": <Globe size={18} style={{ color: 'var(--primary-color)' }} />,
+  "Notion API": <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Notion" className="w-6 h-6" style={{ filter: 'var(--logo-filter)' }} />,
+  "Figma": <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="Figma" className="w-6 h-6" />
+};
 
 const About = () => {
   return (
@@ -71,6 +126,30 @@ const About = () => {
             사람들의 일상과 직접 연결되는 서비스를 안정적으로 뒷받침할 수 있는 백엔드 개발에 끊임없이 관심을 두고 있습니다.
           </p>
         </blockquote>
+
+        {/* Skills Section */}
+        <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>
+          <h2 style={{ fontSize: '1.6rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
+            Skills
+          </h2>
+          <div className="meta-content-section" style={{ padding: '3rem 2.5rem' }}>
+            {skillCategories.map((category, idx) => (
+              <div key={idx} className="skills-category" style={{ marginBottom: idx === skillCategories.length - 1 ? 0 : '2.5rem' }}>
+                <h3 style={{ fontSize: '1.25rem', borderLeft: '3px solid var(--primary-color)', paddingLeft: '0.75rem', marginBottom: '1.25rem', color: 'var(--text-color)' }}>
+                  {category.title}
+                </h3>
+                <div className="skills-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+                  {category.skills.map((skill, sIdx) => (
+                    <span key={sIdx} className="tech-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: '1px solid var(--border-color)', borderRadius: '4px', fontSize: '0.9rem', fontWeight: '500', padding: '0.4rem 0.75rem' }}>
+                      {skillIcons[skill] || null}
+                      <span>{skill}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
         {/* Narrative bio */}
         <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>

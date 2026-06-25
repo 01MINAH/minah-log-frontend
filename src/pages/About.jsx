@@ -67,11 +67,20 @@ const About = () => {
         <div className="meta-content-section" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2.5rem', alignItems: 'center', marginBottom: '3.5rem' }}>
           <div style={{ textAlign: 'center' }}>
             <img 
-              src="/assets/민아로그 아이콘.png" 
+              src="/assets/profile_character.jpg" 
               alt="임민아 프로필" 
-              style={{ width: '140px', height: '140px', borderRadius: '50%', border: '2px solid var(--border-color)', objectFit: 'cover', display: 'inline-block' }}
+              style={{ 
+                width: '100%', 
+                maxWidth: '160px', 
+                height: 'auto', 
+                borderRadius: 'var(--radius-lg)', 
+                border: '1px solid var(--border-color)', 
+                boxShadow: 'var(--shadow-md)', 
+                objectFit: 'cover', 
+                display: 'inline-block' 
+              }}
               onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/140?text=Minah';
+                e.target.src = 'https://via.placeholder.com/160x200?text=Minah';
               }}
             />
             <h3 style={{ marginTop: '1rem', fontSize: '1.25rem', marginBottom: '0.25rem' }}>임민아</h3>

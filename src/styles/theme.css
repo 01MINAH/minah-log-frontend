@@ -23,6 +23,7 @@
   --shadow-lg: 0 16px 36px rgba(140, 123, 108, 0.08);
   --radius: 8px; /* Refined sharp modern corners */
   --radius-lg: 12px;
+  --logo-filter: none;
 }
 
 .dark {
@@ -39,6 +40,7 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.4);
+  --logo-filter: invert(1);
 }
 
 * {
@@ -1131,5 +1133,13 @@ footer p {
 .carousel-track-scroll {
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+/* Sizing utilities for SVG and image logos */
+.w-6 {
+  width: 1.5rem !important;
+}
+.h-6 {
+  height: 1.5rem !important;
 }
 

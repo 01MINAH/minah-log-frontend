@@ -28,7 +28,6 @@ const Header = () => {
             <li><NavLink to="/about" onClick={closeMenu}>About</NavLink></li>
             <li><NavLink to="/projects" onClick={closeMenu}>Projects</NavLink></li>
             <li><NavLink to="/blog" onClick={closeMenu}>Blog</NavLink></li>
-            <li><NavLink to="/skills" onClick={closeMenu}>Skills</NavLink></li>
             <li><NavLink to="/activities" onClick={closeMenu}>Activities</NavLink></li>
             <li><NavLink to="/career" onClick={closeMenu}>Career</NavLink></li>
           </ul>

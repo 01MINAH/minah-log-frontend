@@ -16,7 +16,7 @@
   /* Warm charcoal */
   --text-muted: #7C7672;
   /* Muted taupe-grey */
-  --primary-color: #8C7B6C;
+  --primary-color: #d1cb7c;
   /* Warm taupe primary */
   --primary-light: #F4F0EB;
   /* Light warm cream */
@@ -130,14 +130,14 @@ nav a {
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  text-align: center;
+  text-align: left;
   color: var(--text-color);
 }
 
 .page-subtitle {
   font-size: 1.1rem;
   color: var(--text-muted);
-  text-align: center;
+  text-align: left;
   margin-bottom: 3.5rem;
 }
 
@@ -676,6 +676,7 @@ footer p {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
+  align-items: start;
 }
 
 .project-card {
@@ -687,7 +688,7 @@ footer p {
   display: flex;
   flex-direction: column;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  height: 100%;
+  height: auto;
 }
 
 .project-card:hover {
@@ -699,7 +700,7 @@ footer p {
 .project-card-image-wrapper {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 200px;
   overflow: hidden;
   background-color: var(--primary-light);
   border-bottom: 1px solid var(--border-color);
@@ -728,6 +729,11 @@ footer p {
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--text-color);
+  transition: color 0.2s ease;
+}
+
+.project-card:hover .project-card-title {
+  color: var(--primary-color);
 }
 
 .project-card-period {
@@ -1105,7 +1111,9 @@ footer p {
     position: static;
     margin-bottom: 2rem;
   }
+}
 
+@media (max-width: 840px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
@@ -1338,11 +1346,12 @@ footer p {
   color: #ffffff;
   border: 1.5px solid #1a1a1a;
 }
+
 .about-btn-dark:hover {
   background-color: #333;
   border-color: #333;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* 아웃라인 — Email */
@@ -1351,11 +1360,12 @@ footer p {
   color: var(--text-color);
   border: 1.5px solid var(--border-color);
 }
+
 .about-btn-outline:hover {
   background-color: var(--primary-light);
   border-color: var(--primary-color);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(140,123,108,0.1);
+  box-shadow: 0 4px 12px rgba(140, 123, 108, 0.1);
 }
 
 /* 프라이머리 — Velog */
@@ -1364,11 +1374,12 @@ footer p {
   color: #ffffff;
   border: 1.5px solid #4a9eff;
 }
+
 .about-btn-primary:hover {
   background-color: #2e87ee;
   border-color: #2e87ee;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74,158,255,0.3);
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
 }
 
 /* 다크 모드 적응 */
@@ -1377,10 +1388,12 @@ footer p {
   color: #1a1a1a;
   border-color: #f0ebe4;
 }
+
 .dark .about-btn-dark:hover {
   background-color: #ffffff;
   border-color: #ffffff;
 }
+
 .dark .about-btn-dark img {
   filter: none !important;
 }
@@ -1560,4 +1573,3 @@ footer p {
     grid-template-columns: 1fr;
   }
 }
-

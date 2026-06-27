@@ -25,16 +25,16 @@ const Projects = () => {
       <section className="projects-section">
         <h1 className="page-title">Projects</h1>
         <p className="page-subtitle">지금까지 주도적으로 설계하고 개발에 참여한 대표 프로젝트입니다.</p>
-        
+
         <div className="projects-grid">
           {projectsData.map(project => {
             const meta = getProjectMeta(project.id);
             return (
               <Link to={`/projects/${project.id}`} key={project.id} className="project-card">
                 <div className="project-card-image-wrapper">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
+                  <img
+                    src={project.image}
+                    alt={project.title}
                     className="project-card-image"
                     onError={(e) => {
                       e.target.src = 'https://via.placeholder.com/400x300?text=Project+Cover';
@@ -42,16 +42,26 @@ const Projects = () => {
                   />
                 </div>
                 <div className="project-card-content" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '1.5rem' }}>
-                  <h3 className="project-card-title" style={{ fontSize: '1.25rem', fontWeight: '800', marginBottom: '0.5rem', color: 'var(--text-color)' }}>
+                  <h3 className="project-card-title" style={{ fontSize: '1.25rem', fontWeight: '800', marginBottom: '0.5rem' }}>
                     {project.title}
                   </h3>
-                  <p className="project-card-description" style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.25rem', lineHeight: '1.5' }}>
+                  <p className="project-card-description" style={{
+                    fontSize: '0.98rem',
+                    color: 'var(--text-muted)',
+                    marginBottom: '1.25rem',
+                    lineHeight: '1.5',
+                    display: '-webkit-box',
+                    WebkitLineClamp: '2',
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    height: '3rem' // 2 lines * 1.5 line-height = 3rem to keep uniform height
+                  }}>
                     {project.description}
                   </p>
-                  
+
                   {project.techStack && project.techStack.length > 0 && (
                     <div className="project-card-tags" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.25rem' }}>
-                      {project.techStack.slice(0, 4).map((tech, idx) => (
+                      {project.techStack.slice(0, 3).map((tech, idx) => (
                         <span key={idx} className="project-card-tag" style={{
                           backgroundColor: 'var(--primary-light)',
                           color: 'var(--text-color)',
@@ -61,7 +71,7 @@ const Projects = () => {
                           fontWeight: '500'
                         }}>{tech}</span>
                       ))}
-                      {project.techStack.length > 4 && (
+                      {project.techStack.length > 3 && (
                         <span className="project-card-tag project-card-tag-more" style={{
                           backgroundColor: 'var(--border-color)',
                           color: 'var(--text-muted)',
@@ -69,7 +79,7 @@ const Projects = () => {
                           borderRadius: '6px',
                           fontSize: '0.78rem',
                           fontWeight: '500'
-                        }}>+{project.techStack.length - 4}</span>
+                        }}>+{project.techStack.length - 3}</span>
                       )}
                     </div>
                   )}
@@ -78,11 +88,11 @@ const Projects = () => {
                   <div style={{
                     borderTop: '1px solid var(--border-color)',
                     paddingTop: '1rem',
-                    marginTop: 'auto',
+                    marginTop: '1.25rem',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '1rem',
-                    fontSize: '0.82rem',
+                    fontSize: '0.9rem',
                     color: 'var(--text-muted)'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>

@@ -1425,4 +1425,134 @@ footer p {
   .about-hero-info-grid {
     grid-template-columns: 1fr;
   }
-}
+}
+
+/* =============================================
+   Skills Section — 2×2 Card Grid (스크린샷 스타일)
+   ============================================= */
+
+.skills-section {
+  margin-bottom: 3.5rem;
+}
+
+/* 섹션 타이틀 — 왼쪽 초록 바 + Skills */
+.skills-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.skills-section-accent {
+  display: inline-block;
+  width: 4px;
+  height: 1.4rem;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* 2×2 카드 그리드 */
+.skills-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+/* 개별 카드 */
+.skill-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.skill-card:hover {
+  box-shadow: 0 8px 28px rgba(140, 123, 108, 0.1);
+  transform: translateY(-3px);
+}
+
+/* 카드 헤더: 아이콘 + 제목 */
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.skill-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.skill-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* 태그 영역 */
+.skill-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+/* 스킬 태그 pill */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-color);
+  background: var(--bg-color);
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.skill-tag:hover {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+/* 다크 모드 */
+.dark .skill-card {
+  box-shadow: none;
+}
+
+.dark .skill-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
+.dark .skill-tag {
+  background: var(--card-bg);
+}
+
+.dark .skill-tag:hover {
+  background: var(--primary-light);
+}
+
+/* 반응형 — 태블릿 이하 */
+@media (max-width: 680px) {
+  .skills-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

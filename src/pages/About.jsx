@@ -1,21 +1,25 @@
 import React from 'react';
-import { Mail, Phone, BookOpen, Rss, Award, Database, Layers, Cpu, Globe } from 'lucide-react';
+import { Mail, Phone, BookOpen, Rss, Award, Database, Layers, Cpu, Globe, Server, Layout, Wrench } from 'lucide-react';
 
 const skillCategories = [
   {
     title: 'Backend Engineering',
-    skills: ['Spring Boot', 'Java', 'Python', 'Django', 'Node.js', 'Express', 'RESTful API']
+    icon: <Server size={18} />,
+    skills: ['Spring Boot', 'Java', 'Python', 'Django', 'Node.js', 'RESTful API']
   },
   {
     title: 'Frontend Development',
+    icon: <Layout size={18} />,
     skills: ['React', 'JavaScript (ES6+)', 'CSS3 / CSS Variables', 'HTML5', 'jQuery', 'Vanilla JS']
   },
   {
     title: 'Database & DevOps',
-    skills: ['MySQL', 'ERD Design', 'Query Tuning', 'AWS EC2 / RDS', 'Docker', 'GitHub Actions', 'Git / GitHub']
+    icon: <Database size={18} />,
+    skills: ['MySQL', 'ERD Design', 'Query Tuning', 'AWS EC2', 'Docker', 'GitHub Actions', 'Git / GitHub']
   },
   {
     title: 'Data & Utilities',
+    icon: <Wrench size={18} />,
     skills: ['Tesseract OCR', 'BeautifulSoup (Web Crawling)', 'Notion API', 'Figma']
   }
 ];
@@ -27,7 +31,6 @@ const skillIcons = {
   "Python": <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python" className="w-6 h-6" />,
   "Django": <img src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-icon.svg" alt="Django" className="w-6 h-6" />,
   "Node.js": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-6 h-6" />,
-  "Express": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="Express" className="w-6 h-6" style={{ filter: 'var(--logo-filter)' }} />,
   "RESTful API": <Layers size={18} style={{ color: 'var(--primary-color)' }} />,
 
   // Frontend Development
@@ -42,7 +45,7 @@ const skillIcons = {
   "MySQL": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" className="w-6 h-6" />,
   "ERD Design": <Database size={18} style={{ color: 'var(--primary-color)' }} />,
   "Query Tuning": <Database size={18} style={{ color: 'var(--primary-color)' }} />,
-  "AWS EC2 / RDS": <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS" className="w-6 h-6" />,
+  "AWS EC2": <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS" className="w-6 h-6" />,
   "Docker": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" className="w-6 h-6" />,
   "GitHub Actions": <img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" alt="GitHub Actions" className="w-6 h-6" style={{ filter: 'var(--logo-filter)' }} />,
   "Git / GitHub": <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" className="w-6 h-6" />,
@@ -118,19 +121,21 @@ const About = () => {
         </div>
 
         {/* Skills Section */}
-        <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>
-          <h2 style={{ fontSize: '1.6rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
+        <div className="skills-section">
+          <h2 className="skills-section-title">
+            <span className="skills-section-accent"></span>
             Skills
           </h2>
-          <div className="meta-content-section" style={{ padding: '3rem 2.5rem' }}>
+          <div className="skills-cards-grid">
             {skillCategories.map((category, idx) => (
-              <div key={idx} className="skills-category" style={{ marginBottom: idx === skillCategories.length - 1 ? 0 : '2.5rem' }}>
-                <h3 style={{ fontSize: '1.25rem', borderLeft: '3px solid var(--primary-color)', paddingLeft: '0.75rem', marginBottom: '1.25rem', color: 'var(--text-color)' }}>
-                  {category.title}
-                </h3>
-                <div className="skills-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              <div key={idx} className="skill-card">
+                <div className="skill-card-header">
+                  <span className="skill-card-icon">{category.icon}</span>
+                  <h3 className="skill-card-title">{category.title}</h3>
+                </div>
+                <div className="skill-tags-wrap">
                   {category.skills.map((skill, sIdx) => (
-                    <span key={sIdx} className="tech-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: '1px solid var(--border-color)', borderRadius: '4px', fontSize: '0.9rem', fontWeight: '500', padding: '0.4rem 0.75rem' }}>
+                    <span key={sIdx} className="skill-tag">
                       {skillIcons[skill] || null}
                       <span>{skill}</span>
                     </span>

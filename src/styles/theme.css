@@ -1,40 +1,58 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
 @font-face {
-    font-family: 'Sweet';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-SemiBold.woff2') format('woff2');
-    font-weight: 600;
-    font-display: swap;
+  font-family: 'Sweet';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
 }
 
 :root {
-  --bg-color: #FAF8F5; /* Warm soft linen beige */
-  --card-bg: #FFFFFF; /* Pure white for panels */
-  --text-color: #2E2B2A; /* Warm charcoal */
-  --text-muted: #7C7672; /* Muted taupe-grey */
-  --primary-color: #8C7B6C; /* Warm taupe primary */
-  --primary-light: #F4F0EB; /* Light warm cream */
-  --accent-color: #5C5246; /* Deep cocoa */
-  --border-color: #E8E3DC; /* Delicate border line */
-  --header-bg: rgba(250, 248, 245, 0.85); /* Glassmorphism header */
+  --bg-color: #FAF8F5;
+  /* Warm soft linen beige */
+  --card-bg: #FFFFFF;
+  /* Pure white for panels */
+  --text-color: #2E2B2A;
+  /* Warm charcoal */
+  --text-muted: #7C7672;
+  /* Muted taupe-grey */
+  --primary-color: #8C7B6C;
+  /* Warm taupe primary */
+  --primary-light: #F4F0EB;
+  /* Light warm cream */
+  --accent-color: #5C5246;
+  /* Deep cocoa */
+  --border-color: #E8E3DC;
+  /* Delicate border line */
+  --header-bg: rgba(250, 248, 245, 0.85);
+  /* Glassmorphism header */
   --footer-bg: #F4F0EB;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.02);
   --shadow-md: 0 4px 16px rgba(140, 123, 108, 0.05);
   --shadow-lg: 0 16px 36px rgba(140, 123, 108, 0.08);
-  --radius: 8px; /* Refined sharp modern corners */
+  --radius: 8px;
+  /* Refined sharp modern corners */
   --radius-lg: 12px;
   --logo-filter: none;
 }
 
 .dark {
-  --bg-color: #181615; /* Dark mocha-charcoal */
-  --card-bg: #221F1E; /* Deep espresso container */
-  --text-color: #EAE5DF; /* Soft linen */
-  --text-muted: #A39C96; /* Warm sand */
-  --primary-color: #C0B0A0; /* Soft beige-gold */
-  --primary-light: #2C2826; /* Dark warm cocoa-grey */
-  --accent-color: #EADBCC; /* Creamy beige */
-  --border-color: #383330; /* Dark fine border */
+  --bg-color: #181615;
+  /* Dark mocha-charcoal */
+  --card-bg: #221F1E;
+  /* Deep espresso container */
+  --text-color: #EAE5DF;
+  /* Soft linen */
+  --text-muted: #A39C96;
+  /* Warm sand */
+  --primary-color: #C0B0A0;
+  /* Soft beige-gold */
+  --primary-light: #2C2826;
+  /* Dark warm cocoa-grey */
+  --accent-color: #EADBCC;
+  /* Creamy beige */
+  --border-color: #383330;
+  /* Dark fine border */
   --header-bg: rgba(24, 22, 21, 0.85);
   --footer-bg: #131111;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -89,7 +107,12 @@ main {
 }
 
 /* Elegant Text Styling */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-color);
   font-family: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
   font-weight: 700;
@@ -98,7 +121,8 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-.logo, nav a {
+.logo,
+nav a {
   font-family: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
 }
 
@@ -162,8 +186,15 @@ header {
 }
 
 @keyframes fly {
-  0%, 100% { transform: translate(0, 0) rotate(-45deg); }
-  50% { transform: translate(4px, -4px) rotate(-42deg); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(-45deg);
+  }
+
+  50% {
+    transform: translate(4px, -4px) rotate(-42deg);
+  }
 }
 
 nav ul {
@@ -209,7 +240,8 @@ nav a.active::after {
   gap: 1rem;
 }
 
-.theme-toggle, .menu-icon {
+.theme-toggle,
+.menu-icon {
   background: none;
   border: 1px solid var(--border-color);
   border-radius: 50%;
@@ -223,7 +255,8 @@ nav a.active::after {
   transition: border-color 0.2s, background-color 0.2s;
 }
 
-.theme-toggle:hover, .menu-icon:hover {
+.theme-toggle:hover,
+.menu-icon:hover {
   border-color: var(--primary-color);
   background-color: var(--primary-light);
 }
@@ -248,7 +281,8 @@ footer p {
 }
 
 /* Buttons */
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -436,7 +470,8 @@ footer p {
   padding: 1rem 0.5rem 2rem 0.5rem;
   margin-bottom: 3rem;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Hide scrollbar for clean design */
+  scrollbar-width: none;
+  /* Hide scrollbar for clean design */
 }
 
 .carousel-container::-webkit-scrollbar {
@@ -730,7 +765,8 @@ footer p {
 }
 
 /* Detail Page Layouts */
-.project-detail-page, .post-detail-page {
+.project-detail-page,
+.post-detail-page {
   padding-top: 2rem;
 }
 
@@ -876,11 +912,15 @@ footer p {
   font-size: 1.05rem;
 }
 
-.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 {
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
   font-weight: 700;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
-  scroll-margin-top: 90px; /* Offset for sticky header */
+  scroll-margin-top: 90px;
+  /* Offset for sticky header */
 }
 
 .markdown-body h1 {
@@ -901,7 +941,8 @@ footer p {
   margin-bottom: 1.5rem;
 }
 
-.markdown-body ul, .markdown-body ol {
+.markdown-body ul,
+.markdown-body ol {
   padding-left: 2rem;
   margin-bottom: 1.5rem;
 }
@@ -1056,7 +1097,8 @@ footer p {
 
   .project-detail-sidebar {
     width: 100%;
-    order: -1; /* Move TOC to top on smaller screens */
+    order: -1;
+    /* Move TOC to top on smaller screens */
   }
 
   .sticky-toc {
@@ -1130,6 +1172,7 @@ footer p {
 .carousel-track-scroll::-webkit-scrollbar {
   display: none;
 }
+
 .carousel-track-scroll {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -1139,7 +1182,247 @@ footer p {
 .w-6 {
   width: 1.5rem !important;
 }
+
 .h-6 {
   height: 1.5rem !important;
 }
 
+/* =============================================
+   About Page — Hero Layout (스크린샷 스타일)
+   ============================================= */
+
+.about-hero-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+  margin-bottom: 3.5rem;
+}
+
+/* 왼쪽: 이미지 래퍼 — 배경 없음 */
+.about-hero-image-wrap {
+  flex-shrink: 0;
+}
+
+/* 사진: 스크린샷처럼 둥근 카드 */
+.about-hero-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px rgba(140, 123, 108, 0.12);
+  display: block;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.about-hero-image:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(140, 123, 108, 0.2);
+}
+
+/* 오른쪽: 텍스트 영역 */
+.about-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 0.5rem;
+}
+
+/* 글귀 */
+.about-hero-quote {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--primary-color);
+  letter-spacing: 0.02em;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* FULL STACK DEVELOPER 레이블 */
+.about-hero-role {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* 헤드라인 */
+.about-hero-headline {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* 설명 */
+.about-hero-desc {
+  font-size: 0.93rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 440px;
+}
+
+/* 정보 2열 그리드 */
+.about-hero-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem 1.5rem;
+  margin-top: 0.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+}
+
+.about-info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.about-info-item a {
+  color: var(--text-color);
+  transition: color 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.about-info-item a:hover {
+  color: var(--primary-color);
+}
+
+/* 버튼 그룹 */
+.about-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* 다크 — GitHub */
+.about-btn-dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: 1.5px solid #1a1a1a;
+}
+.about-btn-dark:hover {
+  background-color: #333;
+  border-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* 아웃라인 — Email */
+.about-btn-outline {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1.5px solid var(--border-color);
+}
+.about-btn-outline:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(140,123,108,0.1);
+}
+
+/* 프라이머리 — Velog */
+.about-btn-primary {
+  background-color: #4a9eff;
+  color: #ffffff;
+  border: 1.5px solid #4a9eff;
+}
+.about-btn-primary:hover {
+  background-color: #2e87ee;
+  border-color: #2e87ee;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74,158,255,0.3);
+}
+
+/* 다크 모드 적응 */
+.dark .about-btn-dark {
+  background-color: #f0ebe4;
+  color: #1a1a1a;
+  border-color: #f0ebe4;
+}
+.dark .about-btn-dark:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.dark .about-btn-dark img {
+  filter: none !important;
+}
+
+/* 반응형 — 태블릿 */
+@media (max-width: 760px) {
+  .about-hero-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .about-hero-image-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-hero-image {
+    max-width: 200px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+  }
+
+  .about-hero-headline {
+    font-size: 2rem;
+  }
+
+  .about-hero-desc {
+    max-width: 100%;
+  }
+
+  .about-hero-info-grid {
+    text-align: left;
+  }
+
+  .about-hero-buttons {
+    justify-content: center;
+  }
+}
+
+/* 반응형 — 모바일 */
+@media (max-width: 480px) {
+  .about-hero-headline {
+    font-size: 1.65rem;
+  }
+
+  .about-hero-info-grid {
+    grid-template-columns: 1fr;
+  }
+}

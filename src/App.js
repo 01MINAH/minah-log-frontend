@@ -7,8 +7,6 @@ import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Blog from './pages/Blog';
 import PostDetail from './pages/PostDetail';
-import Activities from './pages/Activities';
-import Career from './pages/Career';
 import './styles/theme.css';
 
 function App() {
@@ -22,8 +20,6 @@ function App() {
           <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<PostDetail />} />
-          <Route path="/activities" element={<Activities />} />
-          <Route path="/career" element={<Career />} />
         </Routes>
       </Layout>
     </Router>

@@ -1,21 +1,25 @@
 import React from 'react';
-import { Mail, Phone, BookOpen, Rss, Award, Database, Layers, Cpu, Globe } from 'lucide-react';
+import { Mail, Phone, BookOpen, Rss, Award, Database, Layers, Cpu, Globe, Server, Layout, Wrench } from 'lucide-react';
 
 const skillCategories = [
   {
     title: 'Backend Engineering',
-    skills: ['Spring Boot', 'Java', 'Python', 'Django', 'Node.js', 'Express', 'RESTful API']
+    icon: <Server size={18} />,
+    skills: ['Spring Boot', 'Java', 'Python', 'Django', 'Node.js', 'RESTful API']
   },
   {
     title: 'Frontend Development',
+    icon: <Layout size={18} />,
     skills: ['React', 'JavaScript (ES6+)', 'CSS3 / CSS Variables', 'HTML5', 'jQuery', 'Vanilla JS']
   },
   {
     title: 'Database & DevOps',
-    skills: ['MySQL', 'ERD Design', 'Query Tuning', 'AWS EC2 / RDS', 'Docker', 'GitHub Actions', 'Git / GitHub']
+    icon: <Database size={18} />,
+    skills: ['MySQL', 'ERD Design', 'Query Tuning', 'AWS EC2', 'Docker', 'GitHub Actions', 'Git / GitHub']
   },
   {
     title: 'Data & Utilities',
+    icon: <Wrench size={18} />,
     skills: ['Tesseract OCR', 'BeautifulSoup (Web Crawling)', 'Notion API', 'Figma']
   }
 ];
@@ -27,7 +31,6 @@ const skillIcons = {
   "Python": <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python" className="w-6 h-6" />,
   "Django": <img src="https://www.vectorlogo.zone/logos/djangoproject/djangoproject-icon.svg" alt="Django" className="w-6 h-6" />,
   "Node.js": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-6 h-6" />,
-  "Express": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="Express" className="w-6 h-6" style={{ filter: 'var(--logo-filter)' }} />,
   "RESTful API": <Layers size={18} style={{ color: 'var(--primary-color)' }} />,
 
   // Frontend Development
@@ -42,7 +45,7 @@ const skillIcons = {
   "MySQL": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" alt="MySQL" className="w-6 h-6" />,
   "ERD Design": <Database size={18} style={{ color: 'var(--primary-color)' }} />,
   "Query Tuning": <Database size={18} style={{ color: 'var(--primary-color)' }} />,
-  "AWS EC2 / RDS": <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS" className="w-6 h-6" />,
+  "AWS EC2": <img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" alt="AWS" className="w-6 h-6" />,
   "Docker": <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" className="w-6 h-6" />,
   "GitHub Actions": <img src="https://www.vectorlogo.zone/logos/github/github-icon.svg" alt="GitHub Actions" className="w-6 h-6" style={{ filter: 'var(--logo-filter)' }} />,
   "Git / GitHub": <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="Git" className="w-6 h-6" />,
@@ -118,19 +121,21 @@ const About = () => {
         </div>
 
         {/* Skills Section */}
-        <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>
-          <h2 style={{ fontSize: '1.6rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
+        <div className="skills-section">
+          <h2 className="skills-section-title">
+            <span className="skills-section-accent"></span>
             Skills
           </h2>
-          <div className="meta-content-section" style={{ padding: '3rem 2.5rem' }}>
+          <div className="skills-cards-grid">
             {skillCategories.map((category, idx) => (
-              <div key={idx} className="skills-category" style={{ marginBottom: idx === skillCategories.length - 1 ? 0 : '2.5rem' }}>
-                <h3 style={{ fontSize: '1.25rem', borderLeft: '3px solid var(--primary-color)', paddingLeft: '0.75rem', marginBottom: '1.25rem', color: 'var(--text-color)' }}>
-                  {category.title}
-                </h3>
-                <div className="skills-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              <div key={idx} className="skill-card">
+                <div className="skill-card-header">
+                  <span className="skill-card-icon">{category.icon}</span>
+                  <h3 className="skill-card-title">{category.title}</h3>
+                </div>
+                <div className="skill-tags-wrap">
                   {category.skills.map((skill, sIdx) => (
-                    <span key={sIdx} className="tech-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: '1px solid var(--border-color)', borderRadius: '4px', fontSize: '0.9rem', fontWeight: '500', padding: '0.4rem 0.75rem' }}>
+                    <span key={sIdx} className="skill-tag">
                       {skillIcons[skill] || null}
                       <span>{skill}</span>
                     </span>
@@ -141,7 +146,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Narrative bio */}
+        {/* 성장과 변화를 만드는 개발 */}
         <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>
           <h2 style={{ fontSize: '1.6rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
             성장과 변화를 만드는 개발
@@ -152,8 +157,47 @@ const About = () => {
           </p>
         </div>
 
+        {/* Career Section (About 내부로 이동) */}
+        <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>
+          <h2 style={{ fontSize: '1.6rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
+            Career
+          </h2>
+          <div className="meta-content-section" style={{ padding: '2rem 1.5rem', background: 'transparent', border: '1px solid var(--border-color)', borderRadius: '12px' }}>
+            <div className="timeline">
+              {[
+                {
+                  date: '2024.06 - 2024.12',
+                  title: 'LG유플러스 유레카 SW 교육과정 수료',
+                  description: '실무 연계형 풀스택 소프트웨어 개발자 육성 프로그램 참여. 백엔드(Spring Boot, JPA) 및 프론트엔드(React, JavaScript) 융합 설계 수행 및 팀 프로젝트 최우수 수상.'
+                },
+                {
+                  date: '2022.06 - 2022.12',
+                  title: '학술 경진대회 및 중소 프로젝트 참여',
+                  description: 'OCR 이미지 기출문제 스캔 파이프라인 개발 및 BeautifulSoup 웹 크롤러를 이용한 대규모 데이터 적재(10,000건 이상) 개발 등 다양한 개인 및 팀 프로젝트 주도.'
+                },
+                {
+                  date: '2020.03 - 2024.08',
+                  title: '대학교 소프트웨어학과 졸업 (학사)',
+                  description: '소프트웨어공학, 알고리즘, 데이터베이스설계, 네트워크, 운영체제 등 컴퓨터 공학 기초 및 응용 학문 전반을 깊이 있게 이수하고 졸업하였습니다.'
+                },
+                {
+                  date: '2021.11 - 현재',
+                  title: '기술 블로그 글 연재 및 스터디 활동',
+                  description: 'React, Spring Boot, 데이터베이스 쿼리 최적화 등을 기록하며 지식을 축적하고 있습니다. 스터디를 개설하여 공동 기술 탐구 활동을 지속 중입니다.'
+                }
+              ].map((event, idx) => (
+                <div key={idx} className="timeline-item">
+                  <div className="timeline-date">{event.date}</div>
+                  <h3 className="timeline-title">{event.title}</h3>
+                  <p className="timeline-description">{event.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Key Achievements */}
-        <div style={{ textAlign: 'left' }}>
+        <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>
           <h2 style={{ fontSize: '1.6rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
             핵심 역량 및 기여 사례
           </h2>
@@ -167,7 +211,7 @@ const About = () => {
                 <h4 style={{ fontSize: '1.1rem', margin: '0 0 0.5rem 0' }}>데이터베이스 설계 및 쿼리 튜닝 성능 개선</h4>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', margin: 0, lineHeight: '1.6' }}>
                   SW 개발자로서 ERD 다이어그램을 직접 설계하며 데이터베이스 정규화 구조에 대한 이해도를 넓혔습니다.
-                  대기만성 프로젝트 진행 중 발생했던 데이터 조회 지연 문제에 대해, 쿼리 실행 계획 분석을 거쳐 풀스캔 병목을 파악하고 적절한 인덱스를 적용해 **서버 응답 속도를 약 30.34% 단축**하는 성과를 거두었습니다.
+                  대기만성 프로젝트 진행 중 발생했던 데이터 조회 지연 문제에 대해, 쿼리 실행 계획 분석을 거쳐 풀스캔 병목을 파악하고 적절한 인덱스를 적용해 서버 응답 속도를 약 30.34% 단축하는 성과를 거두었습니다.
                 </p>
               </div>
             </div>
@@ -180,12 +224,66 @@ const About = () => {
                 <h4 style={{ fontSize: '1.1rem', margin: '0 0 0.5rem 0' }}>API 아키텍처 고도화 및 N+1 문제 해결</h4>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', margin: 0, lineHeight: '1.6' }}>
                   Spring Boot 기반의 엔터프라이즈 프로젝트에서 비즈니스 로직을 추상화하고 중복 코드를 제거하여 공통 REST API 모듈의 유지보수성을 크게 향상시켰습니다.
-                  특히 ORM 기술 적용 과정에서 빈번하게 유발되는 N+1 문제에 대응하여 DTO를 통한 Join Fetch 및 벌크 연산 데이터 선 로딩 방식을 적용, **기존 2N+1회의 쿼리 발생 구조를 단 1회로 최적화**하는 성능 개선을 완수했습니다.
+                  특히 ORM 기술 적용 과정에서 빈번하게 유발되는 N+1 문제에 대응하여 DTO를 통한 Join Fetch 및 벌크 연산 데이터 선 로딩 방식을 적용, 기존 2N+1회의 쿼리 발생 구조를 단 1회로 최적화하는 성능 개선을 완수했습니다.
                 </p>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Education Section */}
+        <div style={{ textAlign: 'left', marginBottom: '3.5rem' }}>
+          <h2 style={{ fontSize: '1.6rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
+            Education
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px dashed var(--border-color)', paddingBottom: '1rem' }}>
+              <div>
+                <h4 style={{ fontSize: '1.1rem', margin: '0 0 0.25rem 0' }}>안양대학교 (소프트웨어학 학사)</h4>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', margin: 0 }}>학사 졸업 / 전공 학점 3.96 / 4.5</p>
+              </div>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>2020.03 - 2024.08</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px dashed var(--border-color)', paddingBottom: '1rem' }}>
+              <div>
+                <h4 style={{ fontSize: '1.1rem', margin: '0 0 0.25rem 0' }}>LG유플러스 유레카 SW 교육과정</h4>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', margin: 0 }}>풀스택 웹 소프트웨어 개발자 교육 이수</p>
+              </div>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>2024.06 - 2024.12</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Certification Section */}
+        <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
+          <h2 style={{ fontSize: '1.6rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1.5rem' }}>
+            Certification
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <h4 style={{ fontSize: '1.1rem', margin: '0' }}>정보처리기사 (Engineer Information Processing)</h4>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', margin: '0.25rem 0 0 0' }}>한국산업인력공단</p>
+              </div>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>2026.06.12</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <h4 style={{ fontSize: '1.1rem', margin: '0' }}>리눅스마스터 2급</h4>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', margin: '0.25rem 0 0 0' }}>한국정보통신진흥협회 (KAIT)</p>
+              </div>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>2026.01.02</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <h4 style={{ fontSize: '1.1rem', margin: '0' }}>SQL 개발자 (SQLD)</h4>
+                <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', margin: '0.25rem 0 0 0' }}>한국데이터산업진흥원 (Kdata)</p>
+              </div>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: '500' }}>2025.04.04</span>
+            </div>
+          </div>
+        </div>
+
       </section>
     </div>
   );

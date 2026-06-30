@@ -3,6 +3,7 @@ import { marked } from 'marked';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { postsData } from '../config/postsData';
 import MarkdownRenderer from '../components/MarkdownRenderer';
+import { getPublicUrl } from '../utils/url';
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const PostDetail = () => {
     const [headings, setHeadings] = useState([]);
     useEffect(() => {
       if (!markdownPath) return;
-      fetch(markdownPath)
+      fetch(getPublicUrl(markdownPath))
         .then((res) => res.text())
         .then((text) => {
           const tokens = marked.lexer(text);
@@ -95,7 +96,7 @@ const PostDetail = () => {
         </div>
 
         <img 
-          src={post.image} 
+          src={getPublicUrl(post.image)} 
           alt={post.title} 
           className="detail-main-image"
           style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: 'var(--radius-lg)' }}
@@ -106,13 +107,13 @@ const PostDetail = () => {
       <div className="post-detail-layout">
         <article className="post-detail-content">
           <section className="post-body">
-            <MarkdownRenderer markdownPath={post.markdownPath} />
+            <MarkdownRenderer markdownPath={getPublicUrl(post.markdownPath)} />
           </section>
         </article>
 
         {/* Sidebar Table of Contents */}
         <aside className="post-detail-sidebar">
-          <DynamicTOC markdownPath={post.markdownPath} scrollToSection={scrollToSection} />
+          <DynamicTOC markdownPath={getPublicUrl(post.markdownPath)} scrollToSection={scrollToSection} />
         </aside>
       </div>
     </div>

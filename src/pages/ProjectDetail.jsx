@@ -3,6 +3,7 @@ import { marked } from 'marked';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { projectsData } from '../config/projectsData';
 import MarkdownRenderer from '../components/MarkdownRenderer';
+import { getPublicUrl } from '../utils/url';
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -47,7 +48,7 @@ const ProjectDetail = () => {
     const [headings, setHeadings] = useState([]);
     useEffect(() => {
       if (!markdownPath) return;
-      fetch(markdownPath)
+      fetch(getPublicUrl(markdownPath))
         .then((res) => res.text())
         .then((text) => {
           const tokens = marked.lexer(text);
@@ -102,7 +103,7 @@ const ProjectDetail = () => {
             <h1 className="detail-title">{project.title}</h1>
             <p className="detail-subtitle">{project.description}</p>
             <img
-              src={project.image}
+              src={getPublicUrl(project.image)}
               alt={project.title}
               className="detail-main-image"
               onError={(e) => {
@@ -133,13 +134,13 @@ const ProjectDetail = () => {
 
           {/* Markdown Content */}
           <div className="project-body-content">
-            <MarkdownRenderer markdownPath={project.markdownPath} />
+            <MarkdownRenderer markdownPath={getPublicUrl(project.markdownPath)} />
           </div>
         </div>
 
         {/* Sidebar Table of Contents (Right) */}
         <aside className="project-detail-sidebar">
-          <DynamicTOC markdownPath={project.markdownPath} scrollToSection={scrollToSection} />
+          <DynamicTOC markdownPath={getPublicUrl(project.markdownPath)} scrollToSection={scrollToSection} />
         </aside>
       </div>
     </div>

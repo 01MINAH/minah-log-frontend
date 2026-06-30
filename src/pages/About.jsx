@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, BookOpen, Rss, Award, Database, Layers, Cpu, Globe, Server, Layout, Wrench } from 'lucide-react';
+import { getPublicUrl } from '../utils/url';
 // merge
 const skillCategories = [
   {
@@ -87,7 +88,7 @@ const About = () => {
               {/* 왼쪽: 둥근 카드 이미지 */}
               <div className="about-hero-image-wrap">
                 <img
-                  src="/assets/profile_character.jpg"
+                  src={getPublicUrl("/assets/profile_character.jpg")}
                   alt="임민아 프로필"
                   className="about-hero-image"
                   onError={(e) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { postsData } from '../config/postsData';
+import { getPublicUrl } from '../utils/url';
 
 const Blog = () => {
   const [sortOption, setSortOption] = React.useState('latest'); // 'latest' or 'date'
@@ -58,7 +59,7 @@ const Blog = () => {
           {displayedPosts.map((post) => (
             <Link to={`/blog/${post.id}`} key={post.id} className="card">
               <div className="card-image-wrapper">
-                <img src={post.image} alt={post.title} className="card-image" />
+                <img src={getPublicUrl(post.image)} alt={post.title} className="card-image" />
               </div>
               <div className="card-content">
                 <span className="card-date">{post.date}</span>

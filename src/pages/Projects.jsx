@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock } from 'lucide-react';
 import { projectsData } from '../config/projectsData';
+import { getPublicUrl } from '../utils/url';
 
 // 프로젝트별 메타 정보 매핑 (날짜 & 소요 시간)
 const getProjectMeta = (id) => {
@@ -22,6 +23,9 @@ const getProjectMeta = (id) => {
 const Projects = () => {
   const [sortOption, setSortOption] = React.useState('latest'); // 'latest' or 'date'
   const [selectedTech, setSelectedTech] = React.useState('');
+  
+  // filtering & sorting logic... (no changes needed here, skip to grid render)
+
 
   // Compute unique tech tags
   const allTechTags = React.useMemo(() => {
@@ -106,7 +110,7 @@ const Projects = () => {
               <Link to={`/projects/${project.id}`} key={project.id} className="project-card">
                 <div className="project-card-image-wrapper">
                   <img
-                    src={project.image}
+                    src={getPublicUrl(project.image)}
                     alt={project.title}
                     className="project-card-image"
                     onError={(e) => {

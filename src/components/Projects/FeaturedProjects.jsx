@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { projectsData } from '../../config/projectsData';
 import CarouselSlider from '../CarouselSlider';
+import { getPublicUrl } from '../../utils/url';
 
 const FeaturedProjects = () => {
   const renderProjectCard = (project) => (
@@ -12,7 +13,7 @@ const FeaturedProjects = () => {
     >
       <div className="project-card-image-wrapper" style={{ height: '180px' }}>
         <img 
-          src={project.image} 
+          src={getPublicUrl(project.image)} 
           alt={project.title} 
           className="project-card-image"
           onError={(e) => {

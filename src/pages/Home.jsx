@@ -4,6 +4,7 @@ import SocialLinksCarousel from '../components/SocialLinks/SocialLinksCarousel';
 import FeaturedProjects from '../components/Projects/FeaturedProjects';
 import CarouselSlider from '../components/CarouselSlider';
 import { postsData } from '../config/postsData';
+import { getPublicUrl } from '../utils/url';
 
 const Home = () => {
   const renderStoryCard = (post) => (
@@ -13,7 +14,7 @@ const Home = () => {
       style={{ width: '100%', height: '100%', textDecoration: 'none' }}
     >
       <div className="card-image-wrapper" style={{ height: '180px' }}>
-        <img src={post.image} alt={post.title} className="card-image" />
+        <img src={getPublicUrl(post.image)} alt={post.title} className="card-image" />
       </div>
       <div className="card-content" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <span className="card-date" style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
@@ -40,7 +41,7 @@ const Home = () => {
     <div className="home-page">
       <div className="hero-thumbnail" style={{ height: '420px' }}>
         <img 
-          src="/assets/미나로그_예시풍경.png" 
+          src={getPublicUrl("/assets/미나로그_예시풍경.png")} 
           alt="미나로그 예시풍경 배너" 
         />
       </div>

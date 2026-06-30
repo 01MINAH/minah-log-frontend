@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { marked } from 'marked';
+import { getPublicUrl } from '../utils/url';
 
 // Custom header renderer to inject IDs for Table of Contents links
 const renderer = {
@@ -33,7 +34,7 @@ const MarkdownRenderer = ({ markdownPath }) => {
     setIsLoading(true);
     setError(null);
 
-    fetch(markdownPath)
+    fetch(getPublicUrl(markdownPath))
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Failed to load markdown content (status: ${res.status})`);

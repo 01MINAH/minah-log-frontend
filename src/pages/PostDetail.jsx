@@ -13,7 +13,7 @@ const PostDetail = () => {
     return text
       .toLowerCase()
       .trim()
-      .replace(/\u003c[^\u003e]*\u003e/g, '') // remove HTML tags
+      .replace(/<[^>]*>/g, '') // remove HTML tags
       .replace(/[^\w\sㄱ-ㅎㅏ-ㅣ가-힣-]/g, '') // keep alphanum, Korean, spaces, hyphen
       .replace(/\s+/g, '-');
   };
@@ -55,7 +55,7 @@ const PostDetail = () => {
     e.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerOffset = 90; // sticky header height offset
+      const headerOffset = 90;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -76,41 +76,45 @@ const PostDetail = () => {
   }
 
   return (
-    <div className="content-wrapper post-detail-page">
+    <div className="content-wrapper wide post-detail-page">
       <div style={{ marginBottom: '2rem' }}>
         <Link to="/blog" className="btn-secondary" style={{ display: 'inline-flex', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
           ← 블로그 목록으로
         </Link>
       </div>
 
-      <article className="post-detail-content">
-        <header className="detail-header" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '2.5rem', marginBottom: '2.5rem', textAlign: 'left' }}>
-          <span className="card-date" style={{ fontSize: '0.95rem', marginBottom: '0.75rem' }}>{post.date}</span>
-          <h1 className="detail-title" style={{ fontSize: '2.5rem', margin: '0 0 1.5rem 0', lineHeight: '1.25' }}>{post.title}</h1>
-          
-          <div className="card-tags" style={{ marginBottom: '2rem' }}>
-            {post.tags?.map((tag, idx) => (
-              <span key={idx} className="tag" style={{ fontSize: '0.8rem', padding: '0.35rem 0.75rem' }}>#{tag}</span>
-            ))}
-          </div>
+      {/* Header info - scrolls normally, NOT fixed */}
+      <div className="detail-header" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '2.5rem', marginBottom: '2.5rem', textAlign: 'left' }}>
+        <span className="card-date" style={{ fontSize: '0.95rem', marginBottom: '0.75rem' }}>{post.date}</span>
+        <h1 className="detail-title" style={{ fontSize: '2.5rem', margin: '0 0 1.5rem 0', lineHeight: '1.25' }}>{post.title}</h1>
+        
+        <div className="card-tags" style={{ marginBottom: '2rem' }}>
+          {post.tags?.map((tag, idx) => (
+            <span key={idx} className="tag" style={{ fontSize: '0.8rem', padding: '0.35rem 0.75rem' }}>#{tag}</span>
+          ))}
+        </div>
 
-          <img 
-            src={post.image} 
-            alt={post.title} 
-            className="detail-main-image"
-            style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: 'var(--radius-lg)' }}
-          />
-        </header>
+        <img 
+          src={post.image} 
+          alt={post.title} 
+          className="detail-main-image"
+          style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: 'var(--radius-lg)' }}
+        />
+      </div>
 
-        <section className="post-body">
-          <MarkdownRenderer markdownPath={post.markdownPath} />
-        </section>
-      </article>
+      {/* Flex layout: post body (left) + TOC sidebar (right) */}
+      <div className="post-detail-layout">
+        <article className="post-detail-content">
+          <section className="post-body">
+            <MarkdownRenderer markdownPath={post.markdownPath} />
+          </section>
+        </article>
 
-      {/* Sidebar Table of Contents */}
-      <aside className="post-detail-sidebar">
-        <DynamicTOC markdownPath={post.markdownPath} scrollToSection={scrollToSection} />
-      </aside>
+        {/* Sidebar Table of Contents */}
+        <aside className="post-detail-sidebar">
+          <DynamicTOC markdownPath={post.markdownPath} scrollToSection={scrollToSection} />
+        </aside>
+      </div>
     </div>
   );
 };

@@ -4,26 +4,10 @@ import { Calendar, Clock } from 'lucide-react';
 import { projectsData } from '../config/projectsData';
 import { getPublicUrl } from '../utils/url';
 
-// 프로젝트별 메타 정보 매핑 (날짜 & 소요 시간)
-const getProjectMeta = (id) => {
-  switch (id) {
-    case 4:
-      return { date: '2024.12', duration: '진행 중' };
-    case 2:
-      return { date: '2024.11', duration: '약 1개월 소요' };
-    case 3:
-      return { date: '2024.10', duration: '약 1개월 소요' };
-    case 1:
-      return { date: '2022.06', duration: '약 6개월 소요' };
-    default:
-      return { date: '', duration: '' };
-  }
-};
-
 const Projects = () => {
   const [sortOption, setSortOption] = React.useState('latest'); // 'latest' or 'date'
   const [selectedTech, setSelectedTech] = React.useState('');
-  
+
   // filtering & sorting logic... (no changes needed here, skip to grid render)
 
 
@@ -105,7 +89,7 @@ const Projects = () => {
 
         <div className="projects-grid">
           {displayedProjects.map(project => {
-            const meta = getProjectMeta(project.id);
+            const meta = { date: project.date || '', duration: project.duration || '' };
             return (
               <Link to={`/projects/${project.id}`} key={project.id} className="project-card">
                 <div className="project-card-image-wrapper">

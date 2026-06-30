@@ -2,6 +2,7 @@
   "name": "my-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://01MINAH.github.io/minah-log-frontend",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

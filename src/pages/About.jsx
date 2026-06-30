@@ -210,8 +210,8 @@ const About = () => {
                       title: '학부생 연구원 활동',
                       description: '대학교 소프트웨어개발학과 재학 중 학부생 연구원으로 활동하며, 추천 시스템 개발 프로젝트에 참여했습니다.\n\n이 프로젝트를 통해 데이터 분석과 알고리즘 구현 능력을 크게 향상시켰으며, 팀원들과의 협업을 통해 문제 해결 역량도 키울 수 있었습니다.\n또한, 정기적으로 특정 주제를 선정해 공부하고 발표하며, 이를 실제 프로젝트에 적용하는 경험을 쌓았습니다.',
                       links: [
-                        { text: '논문 1 바로가기', url: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002890942' },
-                        { text: '논문 2 바로가기', url: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002975782' }
+                        { text: '문제 추천 시스템 논문', url: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002890942' },
+                        { text: '강좌 추천 시스템 논문', url: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002975782' }
                       ]
                     },
                     {

@@ -206,6 +206,15 @@ const About = () => {
                       description: 'OCR 이미지 기출문제 스캔 파이프라인 개발 및 BeautifulSoup 웹 크롤러를 이용한 대규모 데이터 적재(10,000건 이상) 개발 등 팀 프로젝트 수행 - 최우수 수상(2등)'
                     },
                     {
+                      date: '2022.03 - 2023.08',
+                      title: '학부생 연구원 활동',
+                      description: '대학교 소프트웨어개발학과 재학 중 학부생 연구원으로 활동하며, 추천 시스템 개발 프로젝트에 참여했습니다.\n\n이 프로젝트를 통해 데이터 분석과 알고리즘 구현 능력을 크게 향상시켰으며, 팀원들과의 협업을 통해 문제 해결 역량도 키울 수 있었습니다.\n또한, 정기적으로 특정 주제를 선정해 공부하고 발표하며, 이를 실제 프로젝트에 적용하는 경험을 쌓았습니다.',
+                      links: [
+                        { text: '논문 1 바로가기', url: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002890942' },
+                        { text: '논문 2 바로가기', url: 'https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002975782' }
+                      ]
+                    },
+                    {
                       date: '2020.03 - 2024.08',
                       title: '대학교 소프트웨어학과 졸업 (학사)',
                       description: '소프트웨어공학, 알고리즘, 데이터베이스설계, 네트워크, 운영체제 등 컴퓨터 공학 기초 및 응용 학문 전반을 깊이 있게 이수하고 졸업하였습니다.'
@@ -219,7 +228,29 @@ const About = () => {
                     <div key={idx} className="timeline-item">
                       <div className="timeline-date">{event.date}</div>
                       <h3 className="timeline-title">{event.title}</h3>
-                      <p className="timeline-description">{event.description}</p>
+                      <p className="timeline-description" style={{ whiteSpace: 'pre-line' }}>{event.description}</p>
+                      {event.links && event.links.length > 0 && (
+                        <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
+                          {event.links.map((link, lIdx) => (
+                            <a
+                              key={lIdx}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn-primary"
+                              style={{
+                                display: 'inline-flex',
+                                padding: '0.5rem 1rem',
+                                fontSize: '0.85rem',
+                                textDecoration: 'none',
+                                borderRadius: '6px'
+                              }}
+                            >
+                              {link.text}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

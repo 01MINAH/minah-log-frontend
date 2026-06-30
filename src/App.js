@@ -12,7 +12,7 @@ import './styles/theme.css';
 
 function App() {
   return (
-    <Router basename="/minah-log-frontend">
+    <Router>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

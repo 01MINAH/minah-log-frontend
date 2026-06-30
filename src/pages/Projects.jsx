@@ -20,14 +20,87 @@ const getProjectMeta = (id) => {
 };
 
 const Projects = () => {
+  const [sortOption, setSortOption] = React.useState('latest'); // 'latest' or 'date'
+  const [selectedTech, setSelectedTech] = React.useState('');
+
+  // Compute unique tech tags
+  const allTechTags = React.useMemo(() => {
+    const tags = new Set();
+    projectsData.forEach(p => p.techStack?.forEach(t => tags.add(t)));
+    return Array.from(tags);
+  }, []);
+
+  // Sort projects based on option
+  const sortedProjects = React.useMemo(() => {
+    const copy = [...projectsData];
+    if (sortOption === 'latest') {
+      // Assuming higher id = newer
+      copy.sort((a, b) => b.id - a.id);
+    } else {
+      // sort by period start year (extract first 4 chars)
+      copy.sort((a, b) => {
+        const aYear = parseInt(a.period.substring(0, 4)) || 0;
+        const bYear = parseInt(b.period.substring(0, 4)) || 0;
+        return aYear - bYear;
+      });
+    }
+    return copy;
+  }, [sortOption]);
+
+  // Apply tech filter
+  const displayedProjects = React.useMemo(() => {
+    if (!selectedTech) return sortedProjects;
+    return sortedProjects.filter(p => p.techStack?.includes(selectedTech));
+  }, [sortedProjects, selectedTech]);
+
   return (
     <div className="content-wrapper wide projects-page-container">
       <section className="projects-section">
         <h1 className="page-title">Projects</h1>
         <p className="page-subtitle">지금까지 주도적으로 설계하고 개발에 참여한 대표 프로젝트입니다.</p>
 
+        <div className="projects-controls" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem', alignItems: 'center' }}>
+          {/* Sort selector */}
+          <select value={sortOption} onChange={(e) => setSortOption(e.target.value)} style={{ padding: '0.4rem 0.6rem', borderRadius: '6px', border: '1px solid var(--border-color)', background: 'var(--card-bg)', color: 'var(--text-color)' }}>
+            <option value="latest">최신순</option>
+            <option value="date">날짜순</option>
+          </select>
+          {/* Tech tag filter */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+            <button
+              onClick={() => setSelectedTech('')}
+              style={{
+                padding: '0.25rem 0.55rem',
+                borderRadius: '6px',
+                backgroundColor: selectedTech === '' ? 'var(--primary-color)' : 'var(--primary-light)',
+                color: selectedTech === '' ? 'var(--card-bg)' : 'var(--text-color)',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              전체
+            </button>
+            {allTechTags.map((tech) => (
+              <button
+                key={tech}
+                onClick={() => setSelectedTech(tech)}
+                style={{
+                  padding: '0.25rem 0.55rem',
+                  borderRadius: '6px',
+                  backgroundColor: selectedTech === tech ? 'var(--primary-color)' : 'var(--primary-light)',
+                  color: selectedTech === tech ? 'var(--card-bg)' : 'var(--text-color)',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
+              >
+                {tech}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="projects-grid">
-          {projectsData.map(project => {
+          {displayedProjects.map(project => {
             const meta = getProjectMeta(project.id);
             return (
               <Link to={`/projects/${project.id}`} key={project.id} className="project-card">

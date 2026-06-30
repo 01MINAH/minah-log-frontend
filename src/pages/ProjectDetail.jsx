@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { marked } from 'marked';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { projectsData } from '../config/projectsData';
 import MarkdownRenderer from '../components/MarkdownRenderer';
@@ -29,6 +30,49 @@ const ProjectDetail = () => {
         behavior: 'smooth'
       });
     }
+  };
+
+  // Helper to generate slug IDs matching MarkdownRenderer
+  const generateId = (text) => {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/<[^>]*>/g, '') // remove HTML tags
+      .replace(/[^\w\sㄱ-ㅎㅏ-ㅣ가-힣-]/g, '') // keep alphanum, Korean, spaces, hyphen
+      .replace(/\s+/g, '-');
+  };
+
+  // Component to render dynamic TOC based on markdown headings
+  const DynamicTOC = ({ markdownPath, scrollToSection }) => {
+    const [headings, setHeadings] = useState([]);
+    useEffect(() => {
+      if (!markdownPath) return;
+      fetch(markdownPath)
+        .then((res) => res.text())
+        .then((text) => {
+          const tokens = marked.lexer(text);
+          const h2Tokens = tokens.filter((t) => t.type === 'heading' && t.depth === 2);
+          const items = h2Tokens.map((t) => ({
+            text: t.text,
+            id: generateId(t.text),
+          }));
+          setHeadings(items);
+        })
+        .catch((err) => console.error('Failed to load markdown for TOC', err));
+    }, [markdownPath]);
+
+    return (
+      <div className="sticky-toc">
+        <h3>목차</h3>
+        <ul className="toc-list">
+          {headings.map((h) => (
+            <li key={h.id}>
+              <a href={`#${h.id}`} onClick={(e) => scrollToSection(e, h.id)}>{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   };
 
   return (
@@ -95,18 +139,7 @@ const ProjectDetail = () => {
 
         {/* Sidebar Table of Contents (Right) */}
         <aside className="project-detail-sidebar">
-          <div className="sticky-toc">
-            <h3>목차</h3>
-            <ul className="toc-list">
-              <li><a href="#프로젝트-소개" onClick={(e) => scrollToSection(e, '프로젝트-소개')}>프로젝트 소개</a></li>
-              <li><a href="#주요-특징" onClick={(e) => scrollToSection(e, '주요-특징')}>주요 특징</a></li>
-              <li><a href="#사용-기술" onClick={(e) => scrollToSection(e, '사용-기술')}>사용 기술</a></li>
-              <li><a href="#개발-도구" onClick={(e) => scrollToSection(e, '개발-도구')}>개발 도구</a></li>
-              <li><a href="#프로젝트-목표" onClick={(e) => scrollToSection(e, '프로젝트-목표')}>프로젝트 목표</a></li>
-              <li><a href="#개발-과정" onClick={(e) => scrollToSection(e, '개발-과정')}>개발 과정</a></li>
-              <li><a href="#트러블슈팅" onClick={(e) => scrollToSection(e, '트러블슈팅')}>트러블슈팅</a></li>
-            </ul>
-          </div>
+          <DynamicTOC markdownPath={project.markdownPath} scrollToSection={scrollToSection} />
         </aside>
       </div>
     </div>

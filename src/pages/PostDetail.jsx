@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { marked } from 'marked';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { postsData } from '../config/postsData';
 import MarkdownRenderer from '../components/MarkdownRenderer';
@@ -6,6 +7,64 @@ import MarkdownRenderer from '../components/MarkdownRenderer';
 const PostDetail = () => {
   const { id } = useParams();
   const post = postsData.find(p => p.id === parseInt(id));
+
+  // Helper to generate slug IDs matching MarkdownRenderer
+  const generateId = (text) => {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/\u003c[^\u003e]*\u003e/g, '') // remove HTML tags
+      .replace(/[^\w\sㄱ-ㅎㅏ-ㅣ가-힣-]/g, '') // keep alphanum, Korean, spaces, hyphen
+      .replace(/\s+/g, '-');
+  };
+
+  // Component to render dynamic TOC based on markdown headings
+  const DynamicTOC = ({ markdownPath, scrollToSection }) => {
+    const [headings, setHeadings] = useState([]);
+    useEffect(() => {
+      if (!markdownPath) return;
+      fetch(markdownPath)
+        .then((res) => res.text())
+        .then((text) => {
+          const tokens = marked.lexer(text);
+          const h2Tokens = tokens.filter((t) => t.type === 'heading' && t.depth === 2);
+          const items = h2Tokens.map((t) => ({
+            text: t.text,
+            id: generateId(t.text),
+          }));
+          setHeadings(items);
+        })
+        .catch((err) => console.error('Failed to load markdown for TOC', err));
+    }, [markdownPath]);
+
+    return (
+      <div className="sticky-toc">
+        <h3>목차</h3>
+        <ul className="toc-list">
+          {headings.map((h) => (
+            <li key={h.id}>
+              <a href={`#${h.id}`} onClick={(e) => scrollToSection(e, h.id)}>{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 90; // sticky header height offset
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   // Scroll to top on load
   useEffect(() => {
@@ -47,6 +106,11 @@ const PostDetail = () => {
           <MarkdownRenderer markdownPath={post.markdownPath} />
         </section>
       </article>
+
+      {/* Sidebar Table of Contents */}
+      <aside className="post-detail-sidebar">
+        <DynamicTOC markdownPath={post.markdownPath} scrollToSection={scrollToSection} />
+      </aside>
     </div>
   );
 };

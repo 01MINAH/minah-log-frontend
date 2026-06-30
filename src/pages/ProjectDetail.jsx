@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { marked } from 'marked';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { projectsData } from '../config/projectsData';
 import MarkdownRenderer from '../components/MarkdownRenderer';
@@ -31,6 +32,49 @@ const ProjectDetail = () => {
     }
   };
 
+  // Helper to generate slug IDs matching MarkdownRenderer
+  const generateId = (text) => {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/<[^>]*>/g, '') // remove HTML tags
+      .replace(/[^\w\sㄱ-ㅎㅏ-ㅣ가-힣-]/g, '') // keep alphanum, Korean, spaces, hyphen
+      .replace(/\s+/g, '-');
+  };
+
+  // Component to render dynamic TOC based on markdown headings
+  const DynamicTOC = ({ markdownPath, scrollToSection }) => {
+    const [headings, setHeadings] = useState([]);
+    useEffect(() => {
+      if (!markdownPath) return;
+      fetch(markdownPath)
+        .then((res) => res.text())
+        .then((text) => {
+          const tokens = marked.lexer(text);
+          const h2Tokens = tokens.filter((t) => t.type === 'heading' && t.depth === 2);
+          const items = h2Tokens.map((t) => ({
+            text: t.text,
+            id: generateId(t.text),
+          }));
+          setHeadings(items);
+        })
+        .catch((err) => console.error('Failed to load markdown for TOC', err));
+    }, [markdownPath]);
+
+    return (
+      <div className="sticky-toc">
+        <h3>목차</h3>
+        <ul className="toc-list">
+          {headings.map((h) => (
+            <li key={h.id}>
+              <a href={`#${h.id}`} onClick={(e) => scrollToSection(e, h.id)}>{h.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div className="content-wrapper wide project-detail-page">
       {/* Top Header Row with Back and Resource Links */}
@@ -38,7 +82,7 @@ const ProjectDetail = () => {
         <Link to="/projects" className="btn-secondary" style={{ display: 'inline-flex', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
           ← 프로젝트 목록으로
         </Link>
-        
+
         <div style={{ display: 'flex', gap: '0.75rem' }}>
           <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'inline-flex', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
             GitHub 소스코드
@@ -57,9 +101,9 @@ const ProjectDetail = () => {
           <div className="detail-header" style={{ textAlign: 'left', marginBottom: '2rem' }}>
             <h1 className="detail-title">{project.title}</h1>
             <p className="detail-subtitle">{project.description}</p>
-            <img 
-              src={project.image} 
-              alt={project.title} 
+            <img
+              src={project.image}
+              alt={project.title}
               className="detail-main-image"
               onError={(e) => {
                 e.target.src = 'https://via.placeholder.com/800x400?text=Project+Cover';
@@ -95,15 +139,7 @@ const ProjectDetail = () => {
 
         {/* Sidebar Table of Contents (Right) */}
         <aside className="project-detail-sidebar">
-          <div className="sticky-toc">
-            <h3>목차</h3>
-            <ul className="toc-list">
-              <li><a href="#프로젝트-소개" onClick={(e) => scrollToSection(e, '프로젝트-소개')}>프로젝트 소개</a></li>
-              <li><a href="#사용-기술" onClick={(e) => scrollToSection(e, '사용-기술')}>사용 기술</a></li>
-              <li><a href="#내가-기여한-부분" onClick={(e) => scrollToSection(e, '내가-기여한-부분')}>내가 기여한 부분</a></li>
-              <li><a href="#트러블슈팅-및-극복-과정" onClick={(e) => scrollToSection(e, '트러블슈팅-및-극복-과정')}>트러블슈팅</a></li>
-            </ul>
-          </div>
+          <DynamicTOC markdownPath={project.markdownPath} scrollToSection={scrollToSection} />
         </aside>
       </div>
     </div>

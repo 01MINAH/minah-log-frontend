@@ -38,7 +38,7 @@ const ProjectDetail = () => {
         <Link to="/projects" className="btn-secondary" style={{ display: 'inline-flex', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
           ← 프로젝트 목록으로
         </Link>
-        
+
         <div style={{ display: 'flex', gap: '0.75rem' }}>
           <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'inline-flex', padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
             GitHub 소스코드
@@ -57,9 +57,9 @@ const ProjectDetail = () => {
           <div className="detail-header" style={{ textAlign: 'left', marginBottom: '2rem' }}>
             <h1 className="detail-title">{project.title}</h1>
             <p className="detail-subtitle">{project.description}</p>
-            <img 
-              src={project.image} 
-              alt={project.title} 
+            <img
+              src={project.image}
+              alt={project.title}
               className="detail-main-image"
               onError={(e) => {
                 e.target.src = 'https://via.placeholder.com/800x400?text=Project+Cover';
@@ -99,9 +99,12 @@ const ProjectDetail = () => {
             <h3>목차</h3>
             <ul className="toc-list">
               <li><a href="#프로젝트-소개" onClick={(e) => scrollToSection(e, '프로젝트-소개')}>프로젝트 소개</a></li>
+              <li><a href="#주요-특징" onClick={(e) => scrollToSection(e, '주요-특징')}>주요 특징</a></li>
               <li><a href="#사용-기술" onClick={(e) => scrollToSection(e, '사용-기술')}>사용 기술</a></li>
-              <li><a href="#내가-기여한-부분" onClick={(e) => scrollToSection(e, '내가-기여한-부분')}>내가 기여한 부분</a></li>
-              <li><a href="#트러블슈팅-및-극복-과정" onClick={(e) => scrollToSection(e, '트러블슈팅-및-극복-과정')}>트러블슈팅</a></li>
+              <li><a href="#개발-도구" onClick={(e) => scrollToSection(e, '개발-도구')}>개발 도구</a></li>
+              <li><a href="#프로젝트-목표" onClick={(e) => scrollToSection(e, '프로젝트-목표')}>프로젝트 목표</a></li>
+              <li><a href="#개발-과정" onClick={(e) => scrollToSection(e, '개발-과정')}>개발 과정</a></li>
+              <li><a href="#트러블슈팅" onClick={(e) => scrollToSection(e, '트러블슈팅')}>트러블슈팅</a></li>
             </ul>
           </div>
         </aside>

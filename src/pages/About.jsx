@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, BookOpen, Rss, Award, Database, Layers, Cpu, Globe, Server, Layout, Wrench } from 'lucide-react';
-
+// merge
 const skillCategories = [
   {
     title: 'Backend Engineering',

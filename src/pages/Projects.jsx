@@ -11,7 +11,7 @@ const getProjectMeta = (id) => {
     case 2:
       return { date: '2024.11', duration: '약 1개월 소요' };
     case 3:
-      return { date: '2024.07', duration: '약 1개월 소요' };
+      return { date: '2024.10', duration: '약 1개월 소요' };
     case 1:
       return { date: '2022.06', duration: '약 6개월 소요' };
     default:
